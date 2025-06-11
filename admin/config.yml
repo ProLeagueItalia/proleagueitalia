@@ -5,14 +5,11 @@ backend:
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-site_url: https://proleagueitalia.it
-
 collections:
   - name: "squadre"
     label: "Squadre"
     folder: "content/squadre"
     create: true
-    slug: "{{slug}}"
     fields:
       - { label: "Nome", name: "nome", widget: "string" }
       - { label: "Allenatore", name: "allenatore", widget: "string" }
