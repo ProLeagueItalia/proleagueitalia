@@ -1,0 +1,15 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "squadre"
+    label: "Squadre"
+    folder: "content/squadre"
+    create: true
+    fields:
+      - { label: "Nome", name: "nome", widget: "string" }
+      - { label: "Allenatore", name: "allenatore", widget: "string" }
