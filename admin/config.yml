@@ -3,10 +3,12 @@ site_url: https://proleagueitalia.it
 backend:
   name: git-gateway
   branch: main
+  base_url: https://proleagueitalia.it
   identity:
     roles:
       - admin
       - editor
+
 
 login: true
 
