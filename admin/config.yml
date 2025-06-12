@@ -21,3 +21,4 @@ collections:
     fields:
       - { label: "Nome", name: "nome", widget: "string" }
       - { label: "Allenatore", name: "allenatore", widget: "string" }
+
