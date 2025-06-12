@@ -1,6 +1,14 @@
+site_url: https://proleagueitalia.it
+
 backend:
   name: git-gateway
   branch: main
+  identity:
+    roles:
+      - admin
+      - editor
+
+login: true
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
