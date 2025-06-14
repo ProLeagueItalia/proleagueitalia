@@ -1,14 +1,13 @@
-site_url: https://www.proleagueitalia.it
+site_url: https://proleagueitalia.netlify.app
 
 backend:
   name: git-gateway
   branch: main
-  base_url: https://www.proleagueitalia.it
+  base_url: https://proleagueitalia.netlify.app
   identity:
     roles:
       - admin
       - editor
-
 
 login: true
 
