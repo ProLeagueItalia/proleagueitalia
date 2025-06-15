@@ -21,66 +21,37 @@ collections:
     create: true
     fields:
       - { label: "Squadra", name: "squadra", widget: "string" }
-      - { label: "Partite giocate", name: "pg", widget: "number" }
-      - { label: "Vittorie", name: "v", widget: "number" }
-      - { label: "Pareggi", name: "p", widget: "number" }
-      - { label: "Sconfitte", name: "s", widget: "number" }
-      - { label: "Gol fatti", name: "gf", widget: "number" }
-      - { label: "Gol subiti", name: "gs", widget: "number" }
-      - { label: "Differenza reti", name: "dr", widget: "number" }
-
+      - { label: "Allenatore", name: "allenatore", widget: "string" }
+      - { label: "Logo", name: "logo", widget: "image", media_folder: "images/squadre/inglese", public_folder: "/images/squadre/inglese" }
   - name: "lega-italiana"
     label: "Lega Italiana"
     folder: "content/leghe/lega-italiana"
     create: true
     fields:
       - { label: "Squadra", name: "squadra", widget: "string" }
-      - { label: "Partite giocate", name: "pg", widget: "number" }
-      - { label: "Vittorie", name: "v", widget: "number" }
-      - { label: "Pareggi", name: "p", widget: "number" }
-      - { label: "Sconfitte", name: "s", widget: "number" }
-      - { label: "Gol fatti", name: "gf", widget: "number" }
-      - { label: "Gol subiti", name: "gs", widget: "number" }
-      - { label: "Differenza reti", name: "dr", widget: "number" }
-
+      - { label: "Allenatore", name: "allenatore", widget: "string" }
+      - { label: "Logo", name: "logo", widget: "image", media_folder: "images/squadre/italiana", public_folder: "/images/squadre/italiana" }
   - name: "lega-francese"
     label: "Lega Francese"
     folder: "content/leghe/lega-francese"
     create: true
     fields:
       - { label: "Squadra", name: "squadra", widget: "string" }
-      - { label: "Partite giocate", name: "pg", widget: "number" }
-      - { label: "Vittorie", name: "v", widget: "number" }
-      - { label: "Pareggi", name: "p", widget: "number" }
-      - { label: "Sconfitte", name: "s", widget: "number" }
-      - { label: "Gol fatti", name: "gf", widget: "number" }
-      - { label: "Gol subiti", name: "gs", widget: "number" }
-      - { label: "Differenza reti", name: "dr", widget: "number" }
-
-  - name: "lega-spagnola"
-    label: "Lega Spagnola"
-    folder: "content/leghe/lega-spagnola"
-    create: true
-    fields:
-      - { label: "Squadra", name: "squadra", widget: "string" }
-      - { label: "Partite giocate", name: "pg", widget: "number" }
-      - { label: "Vittorie", name: "v", widget: "number" }
-      - { label: "Pareggi", name: "p", widget: "number" }
-      - { label: "Sconfitte", name: "s", widget: "number" }
-      - { label: "Gol fatti", name: "gf", widget: "number" }
-      - { label: "Gol subiti", name: "gs", widget: "number" }
-      - { label: "Differenza reti", name: "dr", widget: "number" }
-
+      - { label: "Allenatore", name: "allenatore", widget: "string" }
+      - { label: "Logo", name: "logo", widget: "image", media_folder: "images/squadre/francese", public_folder: "/images/squadre/francese" }
   - name: "lega-tedesca"
     label: "Lega Tedesca"
     folder: "content/leghe/lega-tedesca"
     create: true
     fields:
       - { label: "Squadra", name: "squadra", widget: "string" }
-      - { label: "Partite giocate", name: "pg", widget: "number" }
-      - { label: "Vittorie", name: "v", widget: "number" }
-      - { label: "Pareggi", name: "p", widget: "number" }
-      - { label: "Sconfitte", name: "s", widget: "number" }
-      - { label: "Gol fatti", name: "gf", widget: "number" }
-      - { label: "Gol subiti", name: "gs", widget: "number" }
-      - { label: "Differenza reti", name: "dr", widget: "number" }
+      - { label: "Allenatore", name: "allenatore", widget: "string" }
+      - { label: "Logo", name: "logo", widget: "image", media_folder: "images/squadre/tedesca", public_folder: "/images/squadre/tedesca" }
+  - name: "lega-spagnola"
+    label: "Lega Spagnola"
+    folder: "content/leghe/lega-spagnola"
+    create: true
+    fields:
+      - { label: "Squadra", name: "squadra", widget: "string" }
+      - { label: "Allenatore", name: "allenatore", widget: "string" }
+      - { label: "Logo", name: "logo", widget: "image", media_folder: "images/squadre/spagnola", public_folder: "/images/squadre/spagnola" }
