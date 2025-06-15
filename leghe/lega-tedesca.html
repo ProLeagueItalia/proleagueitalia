@@ -1,1 +1,34 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Lega Tedesca</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Lega Tedesca</h1>
+  <div id="lega-tedesca-container">
+    <!-- I dati verranno caricati dinamicamente -->
+  </div>
+
+  <script src="/script.js"></script>
+  <script>
+    // Carica i dati markdown convertiti in JSON
+    fetch('/content/leghe/lega-tedesca/index.json')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('lega-tedesca-container');
+        data.forEach(squadra => {
+          container.innerHTML += `
+            <div class="card">
+              <img src="${squadra.logo}" alt="${squadra.squadra}" width="80">
+              <h3>${squadra.squadra}</h3>
+              <p>Allenatore: ${squadra.allenatore || 'Da assegnare'}</p>
+            </div>
+          `;
+        });
+      });
+  </script>
+</body>
+</html>
 
