@@ -12,8 +12,21 @@
   </header>
 
   <main>
+    <div class="filtro-leghe">
+  <label for="selezionaLega">Seleziona una lega:</label>
+  <select id="selezionaLega" onchange="filtraLega()">
+    <option value="tutte">Tutte</option>
+    <option value="inglese">Lega Inglese</option>
+    <option value="italiana">Lega Italiana</option>
+    <option value="spagnola">Lega Spagnola</option>
+    <option value="tedesca">Lega Tedesca</option>
+    <option value="francese">Lega Francese</option>
+    <option value="serieb">Serie B</option>
+  </select>
+</div>
+
     <!-- LEGA INGLESE -->
-    <section class="lega">
+    <section class="lega inglese">
       <h2>Lega Inglese</h2>
       <div class="squadre">
         <div class="squadra"><h3>Liverpool</h3><p>Allenatore: -</p></div>
@@ -28,7 +41,7 @@
     </section>
 
     <!-- LEGA ITALIANA -->
-    <section class="lega">
+    <section class="lega italiana"> 
       <h2>Lega Italiana</h2>
       <div class="squadre">
         <div class="squadra"><h3>Napoli</h3><p>Allenatore: -</p></div>
@@ -43,7 +56,7 @@
     </section>
 
     <!-- LEGA SPAGNOLA -->
-    <section class="lega">
+    <section class="lega spagnola">
       <h2>Lega Spagnola</h2>
       <div class="squadre">
         <div class="squadra"><h3>Barcellona</h3><p>Allenatore: -</p></div>
@@ -58,7 +71,7 @@
     </section>
 
     <!-- LEGA TEDESCA -->
-    <section class="lega">
+    <section class="lega tedesca">
       <h2>Lega Tedesca</h2>
       <div class="squadre">
         <div class="squadra"><h3>Bayern Monaco</h3><p>Allenatore: -</p></div>
@@ -73,7 +86,7 @@
     </section>
 
     <!-- LEGA FRANCESE -->
-    <section class="lega">
+    <section class="lega francese">
       <h2>Lega Francese</h2>
       <div class="squadre">
         <div class="squadra"><h3>PSG</h3><p>Allenatore: -</p></div>
@@ -88,7 +101,7 @@
     </section>
 
     <!-- SERIE B -->
-    <section class="lega">
+    <section class="lega serieb">
       <h2>Serie B</h2>
       <div class="squadre">
         <div class="squadra"><h3>BSC Young Boys</h3><p>Allenatore: -</p></div>
