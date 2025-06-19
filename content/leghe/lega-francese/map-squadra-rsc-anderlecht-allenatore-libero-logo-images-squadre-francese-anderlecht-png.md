@@ -1,5 +1,5 @@
 ---
-squadra: "RSC ANDERLECHT "
+squadra: LIONE
 allenatore: LIBERO
-logo: /images/squadre/francese/anderlecht.png
+logo: /images/squadre/francese/lione.png
 ---
