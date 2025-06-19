@@ -146,3 +146,20 @@ nav a:hover {
   object-fit: contain;
   margin-bottom: 0.5rem;
 }
+/* Colori di sfondo diversi per ogni lega */
+.lega.inglese   { background-color: #e8f0ff; }
+.lega.italiana  { background-color: #fff4e6; }
+.lega.spagnola  { background-color: #f2f0ff; }
+.lega.tedesca   { background-color: #e6fff2; }
+.lega.francese  { background-color: #fff0f5; }
+.lega.serieb    { background-color: #f0f0f0; }
+.inglese .squadra { border: 2px solid #0044cc; }
+.italiana .squadra { border: 2px solid #009246; }
+.spagnola .squadra { border: 2px solid #c60b1e; }
+.tedesca .squadra { border: 2px solid #000000; }
+.francese .squadra { border: 2px solid #0055a4; }
+.serieb .squadra { border: 2px solid #999999; }
+.squadra img:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
