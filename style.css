@@ -181,3 +181,33 @@ nav a:hover {
 .lega.serieb {
   background: url('../images/sfondi/serieb.png') center/cover no-repeat;
 }
+.tabella-container {
+  padding: 2rem;
+  overflow-x: auto;
+}
+
+.tabella-rosa {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.tabella-rosa th,
+.tabella-rosa td {
+  border: 1px solid #ddd;
+  padding: 0.6rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.tabella-rosa thead {
+  background-color: #001f3f;
+  color: white;
+}
+
+.tabella-rosa tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
