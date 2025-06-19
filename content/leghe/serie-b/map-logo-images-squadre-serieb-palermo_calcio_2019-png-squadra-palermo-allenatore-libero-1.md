@@ -1,5 +1,5 @@
 ---
-squadra: PALERMO
+squadra: FROSINONE CALCIO
 allenatore: LIBERO
-logo: /images/squadre/serieb/palermo_calcio_2019.png
+logo: /images/squadre/serieb/frosinone_calcio_logo.svg.png
 ---
