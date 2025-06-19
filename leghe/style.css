@@ -1,1 +1,87 @@
+/* Base */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  color: #222;
+}
+
+/* Header */
+header {
+  background-color: #001f3f;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+header img {
+  height: 50px;
+  margin-bottom: 0.5rem;
+}
+
+/* Main Content */
+main {
+  padding: 2rem;
+}
+
+/* Sezione Lega */
+.lega {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lega h2 {
+  text-align: center;
+  color: #003366;
+  margin-bottom: 1.5rem;
+}
+
+/* Squadre */
+.squadre {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.squadra {
+  background-color: #e6ecf0;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.squadra:hover {
+  transform: translateY(-5px);
+}
+
+.squadra img {
+  width: 80px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.squadra h3 {
+  margin: 0.5rem 0 0.3rem;
+  color: #001f3f;
+}
+
+.squadra p {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+/* Footer */
+footer {
+  background-color: #001f3f;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
 
