@@ -181,3 +181,50 @@ nav a:hover {
 .lega.serieb {
   background: url('../images/sfondi/serieb.png') center/cover no-repeat;
 }
+/* 👇 Effetto sventolio generale */
+@keyframes sventola {
+  0%, 100% { background-position: center top; }
+  50%      { background-position: center bottom; }
+}
+
+/* 🇬🇧 Premier League */
+.lega.inglese {
+  background: url('../images/sfondi/inglese.png') center/cover no-repeat;
+  animation: sventola 6s infinite ease-in-out;
+  background-size: 110% auto;
+}
+
+/* 🇮🇹 Serie A */
+.lega.italiana {
+  background: url('../images/sfondi/italiana.png') center/cover no-repeat;
+  animation: sventola 6s infinite ease-in-out;
+  background-size: 110% auto;
+}
+
+/* 🇪🇸 Liga */
+.lega.spagnola {
+  background: url('../images/sfondi/spagnola.png') center/cover no-repeat;
+  animation: sventola 6s infinite ease-in-out;
+  background-size: 110% auto;
+}
+
+/* 🇩🇪 Bundesliga */
+.lega.tedesca {
+  background: url('../images/sfondi/tedesca.png') center/cover no-repeat;
+  animation: sventola 6s infinite ease-in-out;
+  background-size: 110% auto;
+}
+
+/* 🇫🇷 Ligue 1 */
+.lega.francese {
+  background: url('../images/sfondi/francese.png') center/cover no-repeat;
+  animation: sventola 6s infinite ease-in-out;
+  background-size: 110% auto;
+}
+
+/* 🟩 Serie B */
+.lega.serieb {
+  background: url('../images/sfondi/serieb.png') center/cover no-repeat;
+  animation: sventola 6s infinite ease-in-out;
+  background-size: 110% auto;
+}
