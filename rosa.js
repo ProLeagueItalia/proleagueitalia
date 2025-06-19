@@ -42,13 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
         tbody.appendChild(row);
       });
-    })
-    .catch(error => {
-      console.error("Errore:", error);
-      document.getElementById("tabellaRosa").innerHTML = "<tr><td colspan='8'>Errore nel caricamento della rosa.</td></tr>";
-    });
-});
-// CAMBIO COLORE E LOGO IN BASE ALLA SQUADRA
 const params = new URLSearchParams(window.location.search);
 const squadra = params.get("squadra");
 
@@ -66,9 +59,9 @@ if (squadra) {
     torino: "#781f1f",
     como: "#0e519e",
     udinese: "#bcbcbc",
-    // aggiungi qui le altre squadre...
+    // aggiungi altre squadre
   };
 
-  const colore = colori[squadra] || "#001f3f"; // fallback blu
+  const colore = colori[squadra] || "#001f3f";
   document.querySelector("header").style.backgroundColor = colore;
 }
