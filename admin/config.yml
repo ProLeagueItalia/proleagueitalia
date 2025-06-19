@@ -55,3 +55,11 @@ collections:
       - { label: "Squadra", name: "squadra", widget: "string" }
       - { label: "Allenatore", name: "allenatore", widget: "string" }
       - { label: "Logo", name: "logo", widget: "image", media_folder: "images/squadre/spagnola", public_folder: "/images/squadre/spagnola" }
+  - name: "serie-b"
+    label: "Serie B"
+    folder: "content/leghe/serie-b"
+    create: true
+    fields:
+      - { label: "Squadra", name: "squadra", widget: "string" }
+      - { label: "Allenatore", name: "allenatore", widget: "string" }
+      - { label: "Logo", name: "logo", widget: "image", media_folder: "images/squadre/serieb", public_folder: "/images/squadre/serieb" }
