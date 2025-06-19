@@ -48,3 +48,27 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("tabellaRosa").innerHTML = "<tr><td colspan='8'>Errore nel caricamento della rosa.</td></tr>";
     });
 });
+// CAMBIO COLORE E LOGO IN BASE ALLA SQUADRA
+const params = new URLSearchParams(window.location.search);
+const squadra = params.get("squadra");
+
+if (squadra) {
+  const nome = squadra.toUpperCase();
+  document.getElementById("nomeSquadra").textContent = "Rosa " + nome;
+  document.getElementById("logoSquadra").src = `images/squadre/${squadra}.png`;
+
+  const colori = {
+    napoli: "#0074b7",
+    juventus: "#111",
+    roma: "#831d1c",
+    fiorentina: "#58229d",
+    bologna: "#bd2031",
+    torino: "#781f1f",
+    como: "#0e519e",
+    udinese: "#bcbcbc",
+    // aggiungi qui le altre squadre...
+  };
+
+  const colore = colori[squadra] || "#001f3f"; // fallback blu
+  document.querySelector("header").style.backgroundColor = colore;
+}
