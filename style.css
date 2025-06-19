@@ -228,3 +228,39 @@ nav a:hover {
   animation: sventola 6s infinite ease-in-out;
   background-size: 110% auto;
 }
+@keyframes ondeggia {
+  0%   { background-position-x: 0%; }
+  50%  { background-position-x: 100%; }
+  100% { background-position-x: 0%; }
+}
+
+.lega.inglese {
+  background: url('../images/sfondi/inglese.png') repeat-x;
+  animation: ondeggia 6s linear infinite;
+  background-size: 150% auto;
+}
+.lega.italiana {
+  background: url('../images/sfondi/italiana.png') repeat-x;
+  animation: ondeggia 6s linear infinite;
+  background-size: 150% auto;
+}
+.lega.spagnola {
+  background: url('../images/sfondi/spagnola.png') repeat-x;
+  animation: ondeggia 6s linear infinite;
+  background-size: 150% auto;
+}
+.lega.tedesca {
+  background: url('../images/sfondi/tedesca.png') repeat-x;
+  animation: ondeggia 6s linear infinite;
+  background-size: 150% auto;
+}
+.lega.francese {
+  background: url('../images/sfondi/francese.png') repeat-x;
+  animation: ondeggia 6s linear infinite;
+  background-size: 150% auto;
+}
+.lega.serieb {
+  background: url('../images/sfondi/serieb.png') repeat-x;
+  animation: ondeggia 6s linear infinite;
+  background-size: 150% auto;
+}
