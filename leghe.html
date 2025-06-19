@@ -119,5 +119,24 @@
   <footer>
     <p>&copy; 2025 Pro League Italia. Tutti i diritti riservati.</p>
   </footer>
+  <script>
+  function filtraLega() {
+    const selezione = document.getElementById("selezionaLega").value;
+    const sezioni = document.querySelectorAll(".lega");
+
+    sezioni.forEach(sezione => {
+      if (selezione === "tutte") {
+        sezione.style.display = "block";
+      } else {
+        if (sezione.classList.contains(selezione)) {
+          sezione.style.display = "block";
+        } else {
+          sezione.style.display = "none";
+        }
+      }
+    });
+  }
+</script>
+
 </body>
 </html>
