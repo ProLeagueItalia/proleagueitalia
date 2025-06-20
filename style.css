@@ -263,7 +263,7 @@ main {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 450px;
+  height: 100vh; /* <--- Cambiato da min-height */
   display: flex;
   flex-direction: column;
   justify-content: center;
