@@ -246,6 +246,17 @@ nav a:hover {
   font-size: 1.2rem;
   opacity: 0.9;
 }
+/* Layout per tenere il footer in basso */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  flex: 1;
+}
 /* Sfondo grafico per sezione hero */
 .hero {
   background-image: url("images/bg-stadio.jpg");
