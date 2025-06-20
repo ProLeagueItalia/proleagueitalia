@@ -246,3 +246,15 @@ nav a:hover {
   font-size: 1.2rem;
   opacity: 0.9;
 }
+/* Sfondo grafico per sezione hero */
+.hero {
+  background-image: url('images/bg-stadio.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 100px 20px;
+  text-align: center;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  text-shadow: 1px 1px 4px black;
+}
