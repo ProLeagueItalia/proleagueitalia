@@ -258,3 +258,17 @@ nav a:hover {
   font-family: 'Inter', sans-serif;
   text-shadow: 1px 1px 4px black;
 }
+/* --- HOMEPAGE: sezione presentazione con sfondo --- */
+.presentazione {
+  background-image: url('images/bg-stadio.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 60px 20px;
+  color: white;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+  border-top: 6px solid #002244;
+  border-bottom: 6px solid #002244;
+}
