@@ -211,3 +211,38 @@ nav a:hover {
 .tabella-rosa tbody tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+/* Hero section inspirata allo stadio */
+.hero {
+  background: url('images/bg-stadio.jpg') center/cover no-repeat;
+  height: 300px;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* leggero filtro scuro */
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-overlay h1 {
+  font-size: 3rem;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.hero-overlay p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
