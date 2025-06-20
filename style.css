@@ -246,6 +246,21 @@ nav a:hover {
   font-size: 1.2rem;
   opacity: 0.9;
 }
+.hero-overlay .intro {
+  font-size: 1.5rem;
+  margin-top: 30px;
+  color: white;
+  text-shadow: 1px 1px 4px black;
+}
+
+.hero-overlay .intro-text {
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  color: white;
+  text-shadow: 1px 1px 3px black;
+}
+
 /* Layout per tenere il footer in basso */
 body {
   display: flex;
