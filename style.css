@@ -226,14 +226,11 @@ nav a:hover {
 }
 
 .hero-overlay {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4); /* leggero overlay */
+  padding: 40px;
+  border-radius: 12px;
 }
 
 .hero-overlay h1 {
@@ -278,15 +275,13 @@ main {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh; /* <--- Cambiato da min-height */
+  height: 100vh; /* Imposta altezza pari al 100% della finestra */
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  color: white;
-  text-align: center;
-  font-family: 'Inter', sans-serif;
-  text-shadow: 1px 1px 4px black;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
 }
 
 /* --- HOMEPAGE: sezione presentazione con sfondo --- */
