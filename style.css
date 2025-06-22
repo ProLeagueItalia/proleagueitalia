@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 0;
   color: #222;
+  overflow-y: hidden; /* <-- aggiunto */
 }
 
 header {
@@ -214,13 +215,14 @@ nav a:hover {
 /* Hero section ispirata allo stadio */
 .hero {
   background-image: url("images/bg-stadio.jpg");
-  background-size: contain; /* Mostra l'immagine intera */
+  background-size: contain; /* Mostra tutto lo sfondo */
   background-repeat: no-repeat;
   background-position: center top;
-  height: 100vh; /* Occupa solo l'altezza dello schermo */
+ height: 90vh; /* Lascia spazio per header/footer */
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin: 0;
   padding: 0;
   overflow: hidden;
