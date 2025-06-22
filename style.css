@@ -215,9 +215,9 @@ nav a:hover {
 .hero {
   background-image: url("images/bg-stadio.jpg");
   background-size: cover;
-  background-position: center top;
+  background-position: center;
   background-repeat: no-repeat;
-  height: 180vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -225,8 +225,6 @@ nav a:hover {
   margin: 0;
   overflow: hidden;
 }
-
-
 .hero::before {
   content: "";
   position: absolute;
