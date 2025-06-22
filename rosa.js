@@ -48,7 +48,7 @@ const squadra = params.get("squadra");
 if (squadra) {
   const nome = squadra.toUpperCase();
   document.getElementById("nomeSquadra").textContent = "Rosa " + nome;
-  document.getElementById("logoSquadra").src = `images/squadre/${squadra}.png`;
+ document.getElementById("logoSquadra").src = `images/squadre/${squadra.toLowerCase()}.png`;
 
   // Colori personalizzati per squadra
   const colori = {
