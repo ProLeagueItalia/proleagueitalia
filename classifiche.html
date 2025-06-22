@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Classifiche - Pro League Italia</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <a href="index.html"><img src="images/logo.png" alt="Logo Pro League Italia" height="80" /></a>
+    <h1>Classifiche - Pro League Italia</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="leghe.html">Leghe</a>
+      <a href="classifiche.html">Classifiche</a>
+      <a href="marcatori.html">Marcatori</a>
+      <a href="mercato.html">Mercato</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="filtro-leghe">
+      <label for="selezionaClassifica">Seleziona una lega:</label>
+      <select id="selezionaClassifica" onchange="filtraClassifica()">
+        <option value="tutte">Tutte</option>
+        <option value="inglese">Lega Inglese</option>
+        <option value="italiana">Lega Italiana</option>
+        <option value="spagnola">Lega Spagnola</option>
+        <option value="tedesca">Lega Tedesca</option>
+        <option value="francese">Lega Francese</option>
+        <option value="serieb">Serie B</option>
+      </select>
+    </div>
+
+    <!-- QUI INSERIREMO LE TABELLE PER OGNI LEGA -->
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Pro League Italia. Tutti i diritti riservati.</p>
+  </footer>
+
+  <script>
+    function filtraClassifica() {
+      const selezione = document.getElementById("selezionaClassifica").value;
+      const sezioni = document.querySelectorAll(".classifica");
+
+      sezioni.forEach(sezione => {
+        if (selezione === "tutte") {
+          sezione.style.display = "block";
+        } else {
+          if (sezione.classList.contains(selezione)) {
+            sezione.style.display = "block";
+          } else {
+            sezione.style.display = "none";
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
