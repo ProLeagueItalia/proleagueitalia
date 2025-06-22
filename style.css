@@ -214,17 +214,18 @@ nav a:hover {
 /* Hero section ispirata allo stadio */
 .hero {
   background-image: url("images/bg-stadio.jpg");
-  background-size: cover;
-  background-position: center;
+  background-size: contain; /* Mostra l'immagine intera */
   background-repeat: no-repeat;
-  height: 100vh;
+  background-position: center top;
+  height: 100vh; /* Occupa solo l'altezza dello schermo */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
   margin: 0;
+  padding: 0;
   overflow: hidden;
 }
+
 .hero::before {
   content: "";
   position: absolute;
