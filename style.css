@@ -294,3 +294,62 @@ nav a:hover {
   margin: 0 auto;
   text-shadow: 1px 1px 2px black;
 }
+.classifica {
+  margin: 2rem auto;
+  width: 95%;
+  max-width: 1000px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  font-family: 'Inter', sans-serif;
+}
+
+.classifica h2 {
+  text-align: center;
+  background-color: #001f3f;
+  color: white;
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+.tabella-classifica {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabella-classifica th,
+.tabella-classifica td {
+  padding: 0.8rem;
+  text-align: center;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+.tabella-classifica th {
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+.tabella-classifica tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Colori per lega */
+.classifica.inglese h2 {
+  background: linear-gradient(90deg, #d00027, #034694);
+}
+.classifica.italiana h2 {
+  background: linear-gradient(90deg, #0074b7, #831c1c);
+}
+.classifica.spagnola h2 {
+  background: linear-gradient(90deg, #a50044, #febd11);
+}
+.classifica.tedesca h2 {
+  background: linear-gradient(90deg, #dc052d, #fce100);
+}
+.classifica.francese h2 {
+  background: linear-gradient(90deg, #004170, #e30613);
+}
+.classifica.serieb h2 {
+  background: linear-gradient(90deg, #fce600, #2945a0);
+}
