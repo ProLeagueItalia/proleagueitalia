@@ -4,51 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!squadra) return;
 
-  document.getElementById("nomeSquadra").textContent = `Rosa ${squadra.replace(/-/g, " ").toUpperCase()}`;
+  const nomeFormattato = squadra.replace(/-/g, " ").toUpperCase();
+  document.getElementById("nomeSquadra").textContent = `Rosa ${nomeFormattato}`;
 
-  fetch(`content/squadre/${squadra}.json`)
-    .then(response => {
-      if (!response.ok) throw new Error("File non trovato");
-      return response.json();
-    })
-    .then(data => {
-      const tbody = document.getElementById("tabellaRosa");
-      tbody.innerHTML = "";
-
-      if (!data.length) {
-        for (let i = 0; i < 23; i++) {
-          const row = document.createElement("tr");
-          for (let j = 0; j < 8; j++) {
-            const cell = document.createElement("td");
-            cell.textContent = "";
-            row.appendChild(cell);
-          }
-          tbody.appendChild(row);
-        }
-        return;
-      }
-
-      data.forEach(giocatore => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${giocatore.id || ""}</td>
-          <td>${giocatore.nome || ""}</td>
-          <td>${giocatore.ruolo || ""}</td>
-          <td>${giocatore.vg || ""}</td>
-          <td>${giocatore.potenziale || ""}</td>
-          <td>${giocatore.ingaggio || ""}</td>
-          <td>${giocatore.valore || ""}</td>
-          <td>${giocatore.contratto || ""}</td>
-        `;
-        tbody.appendChild(row);
-      });
-const params = new URLSearchParams(window.location.search);
-const squadra = params.get("squadra");
-
-if (squadra) {
-  const nome = squadra.toUpperCase();
-  document.getElementById("nomeSquadra").textContent = "Rosa " + nome;
-  document.getElementById("logoSquadra").src = `images/squadre/${squadra.toLowerCase()}.png`;
+  // Carica il logo (assicurati che il nome del file sia esatto e nella cartella giusta)
+  const logoPath = `images/squadre/${squadra.toLowerCase()}.png`;
+  document.getElementById("logoSquadra").src = logoPath;
 
   // Colori personalizzati per squadra
   const colori = {
@@ -107,6 +68,48 @@ if (squadra) {
     "paris-fc": "#001c44"
   };
 
-  const colore = colori[squadra] || "#001f3f";
+ const colore = colori[squadra.toLowerCase()] || "#001f3f";
   document.getElementById("intestazioneRosa").style.backgroundColor = colore;
-}
+
+  // CARICAMENTO DATI GIOCATORI
+  fetch(`content/squadre/${squadra}.json`)
+    .then(response => {
+      if (!response.ok) throw new Error("File non trovato");
+      return response.json();
+    })
+    .then(data => {
+      const tbody = document.getElementById("tabellaRosa");
+      tbody.innerHTML = "";
+
+      if (!data.length) {
+        for (let i = 0; i < 23; i++) {
+          const row = document.createElement("tr");
+          for (let j = 0; j < 8; j++) {
+            const cell = document.createElement("td");
+            cell.textContent = "";
+            row.appendChild(cell);
+          }
+          tbody.appendChild(row);
+        }
+        return;
+      }
+
+      data.forEach(giocatore => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${giocatore.id || ""}</td>
+          <td>${giocatore.nome || ""}</td>
+          <td>${giocatore.ruolo || ""}</td>
+          <td>${giocatore.vg || ""}</td>
+          <td>${giocatore.potenziale || ""}</td>
+          <td>${giocatore.ingaggio || ""}</td>
+          <td>${giocatore.valore || ""}</td>
+          <td>${giocatore.contratto || ""}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    })
+    .catch(error => {
+      console.error("Errore nel caricamento dati:", error);
+    });
+});
