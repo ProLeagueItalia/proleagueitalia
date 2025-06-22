@@ -48,7 +48,7 @@ const squadra = params.get("squadra");
 if (squadra) {
   const nome = squadra.toUpperCase();
   document.getElementById("nomeSquadra").textContent = "Rosa " + nome;
- document.getElementById("logoSquadra").src = `images/squadre/${squadra.toLowerCase()}.png`;
+  document.getElementById("logoSquadra").src = `images/squadre/${squadra.toLowerCase()}.png`;
 
   // Colori personalizzati per squadra
   const colori = {
@@ -107,6 +107,6 @@ if (squadra) {
     "paris-fc": "#001c44"
   };
 
-  const colore = colori[squadra] || "#001f3f"; // default blu scuro
-document.querySelector("header").style.backgroundColor = colore;
+  const colore = colori[squadra] || "#001f3f";
+  document.getElementById("intestazioneRosa").style.backgroundColor = colore;
 }
