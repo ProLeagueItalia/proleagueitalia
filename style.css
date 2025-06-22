@@ -217,7 +217,7 @@ nav a:hover {
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
-  height: 130vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
