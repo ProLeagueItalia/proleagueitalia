@@ -12,7 +12,10 @@ header {
   color: white;
   padding: 1rem;
   text-align: center;
+  position: relative; /* <-- AGGIUNGI */
+  z-index: 2;         /* <-- AGGIUNGI */
 }
+
 
 header img {
   height: 50px;
@@ -232,16 +235,18 @@ nav a:hover {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4); /* filtro scuro trasparente */
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 0; /* aggiunto */
 }
 
 .hero-overlay {
   position: relative;
   text-align: center;
   color: white;
-  background-color: rgba(0, 0, 0, 0.4); /* overlay trasparente */
+  background-color: rgba(0, 0, 0, 0.4);
   padding: 40px;
   border-radius: 12px;
+  z-index: 1; /* <-- AGGIUNGI */
 }
 
 .hero-overlay h1 {
