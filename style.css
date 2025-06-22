@@ -264,3 +264,23 @@ nav a:hover {
   color: white;
   text-shadow: 1px 1px 3px black;
 }
+.intro-section {
+  background: linear-gradient(to bottom, #001933, #002244);
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.intro-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px black;
+}
+
+.intro-section p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 2px black;
+}
