@@ -211,24 +211,30 @@ nav a:hover {
 .tabella-rosa tbody tr:nth-child(even) {
   background-color: #f2f2f2;
 }
-/* Hero section inspirata allo stadio */
+/* Hero section ispirata allo stadio */
 .hero {
   background: url('images/bg-stadio.jpg') center/cover no-repeat;
   height: 300px;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0;
 }
 
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4); /* leggero filtro scuro */
+  background: rgba(0, 0, 0, 0.4); /* filtro scuro trasparente */
 }
 
 .hero-overlay {
+  position: relative;
   text-align: center;
   color: white;
-  background-color: rgba(0, 0, 0, 0.4); /* leggero overlay */
+  background-color: rgba(0, 0, 0, 0.4); /* overlay trasparente */
   padding: 40px;
   border-radius: 12px;
 }
@@ -243,6 +249,7 @@ nav a:hover {
   font-size: 1.2rem;
   opacity: 0.9;
 }
+
 .hero-overlay .intro {
   font-size: 1.5rem;
   margin-top: 30px;
@@ -257,50 +264,3 @@ nav a:hover {
   color: white;
   text-shadow: 1px 1px 3px black;
 }
-
-/* Layout per tenere il footer in basso */
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-}
-
-main {
-  flex: 1;
-}
-/* Sfondo grafico per sezione hero */
-.hero {
-  background-image: url("images/bg-stadio.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh; /* Imposta altezza pari al 100% della finestra */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-}
-
-/* --- HOMEPAGE: sezione presentazione con sfondo --- */
-.presentazione {
-  background: linear-gradient(to bottom, #002244, #001122);
-  padding: 30px 20px; /* Ridotto da 60px */
-  color: white;
-  text-align: center;
-  font-family: 'Inter', sans-serif;
-  border-top: 4px solid #001933;
-  border-bottom: 4px solid #001933;
-}
-footer {
-  background-color: #001933;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  font-size: 14px;
-  position: relative;
-  z-index: 2;
-}
-
