@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendari - Pro League Italia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a href="index.html"><img src="images/logo.png" alt="Logo" height="80"></a>
+    <h1>Calendari - Pro League Italia</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="leghe.html">Leghe</a>
+      <a href="classifiche.html">Classifiche</a>
+      <a href="calendari.html">Calendari</a>
+    </nav>
+  </header>
+
+  <main>
+    <div style="text-align:center; margin: 20px;">
+      <label for="filtroLega">Seleziona una lega:</label>
+      <select id="filtroLega" onchange="filtraCalendario()">
+        <option value="tutte">Tutte</option>
+        <option value="inglese">Lega Inglese</option>
+        <option value="italiana">Lega Italiana</option>
+        <option value="spagnola">Lega Spagnola</option>
+        <option value="tedesca">Lega Tedesca</option>
+        <option value="francese">Lega Francese</option>
+        <option value="serieb">Serie B</option>
+      </select>
+    </div>
+
+    <div id="contenitoreCalendari" class="calendari-grid">
+      <!-- Qui verranno mostrati i calendari -->
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Pro League Italia</p>
+  </footer>
+
+  <script src="calendari.js"></script>
+</body>
+</html>
