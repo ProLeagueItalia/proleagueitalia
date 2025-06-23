@@ -1,41 +1,74 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const contenitore = document.getElementById("contenitoreCalendari");
+async function caricaCalendario() {
+  const response = await fetch('/content/calendari/index.json');
+  const partite = await response.json();
 
-  fetch("content/calendari.json")
-    .then(response => response.json())
-    .then(dati => {
-      contenitore.innerHTML = "";
+  const container = document.getElementById('calendarioContainer');
+  container.innerHTML = '';
 
-      dati.forEach(partita => {
-        const blocco = document.createElement("div");
-        blocco.className = `calendario-blocco ${partita.lega.toLowerCase()}`;
-        blocco.setAttribute("data-lega", partita.lega.toLowerCase());
+  // Raggruppa partite per lega e giornata
+  const partitePerLega = {};
 
-        blocco.innerHTML = `
-          <h3>Giornata ${partita.giornata} - ${partita.lega}</h3>
-          <p><strong>${partita.casa}</strong> vs <strong>${partita.trasferta}</strong></p>
-          <p>Risultato: ${partita.risultato || "-"}</p>
-          <p>Data: ${partita.data || "Da definire"}</p>
-        `;
+  partite.forEach(partita => {
+    const lega = partita.lega;
+    if (!partitePerLega[lega]) {
+      partitePerLega[lega] = {};
+    }
 
-        contenitore.appendChild(blocco);
-      });
-    })
-    .catch(error => {
-      contenitore.innerHTML = "<p>Errore nel caricamento del calendario.</p>";
-      console.error(error);
-    });
-});
+    const giornata = partita.giornata;
+    if (!partitePerLega[lega][giornata]) {
+      partitePerLega[lega][giornata] = [];
+    }
+
+    partitePerLega[lega][giornata].push(partita);
+  });
+
+  // Mostra le partite
+  for (const [lega, giornate] of Object.entries(partitePerLega)) {
+    const legaDiv = document.createElement('div');
+    legaDiv.classList.add('calendario', lega);
+    legaDiv.innerHTML = `<h2>${lega}</h2>`;
+
+    for (const [giornata, matches] of Object.entries(giornate)) {
+      const giornataDiv = document.createElement('div');
+      giornataDiv.innerHTML = `<h3>Giornata ${giornata}</h3>`;
+      
+      const table = document.createElement('table');
+      table.classList.add('tabella-calendario');
+
+      table.innerHTML = `
+        <thead>
+          <tr><th>Casa</th><th>Trasferta</th><th>Risultato</th><th>Data</th></tr>
+        </thead>
+        <tbody>
+          ${matches.map(p => `
+            <tr>
+              <td>${p.casa}</td>
+              <td>${p.trasferta}</td>
+              <td>${p.risultato || '-'}</td>
+              <td>${p.data || '-'}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      `;
+      giornataDiv.appendChild(table);
+      legaDiv.appendChild(giornataDiv);
+    }
+
+    container.appendChild(legaDiv);
+  }
+}
 
 function filtraCalendario() {
-  const selezione = document.getElementById("filtroLega").value;
-  const blocchi = document.querySelectorAll(".calendario-blocco");
+  const selezione = document.getElementById("selezionaLega").value;
+  const sezioni = document.querySelectorAll(".calendario");
 
-  blocchi.forEach(blocco => {
-    if (selezione === "tutte" || blocco.dataset.lega === selezione) {
-      blocco.style.display = "block";
+  sezioni.forEach(sezione => {
+    if (selezione === "tutte" || sezione.classList.contains(selezione)) {
+      sezione.style.display = "block";
     } else {
-      blocco.style.display = "none";
+      sezione.style.display = "none";
     }
   });
 }
+
+caricaCalendario();
