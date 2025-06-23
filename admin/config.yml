@@ -80,4 +80,3 @@ collections:
       - { label: "Squadra Casa", name: "casa", widget: "string", required: false }
       - { label: "Squadra Trasferta", name: "trasferta", widget: "string", required: false }
       - { label: "Risultato", name: "risultato", widget: "string", required: false }
-      - { label: "Data", name: "data", widget: "datetime", format: "YYYY-MM-DD", required: false }
