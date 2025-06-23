@@ -1,5 +1,5 @@
 async function caricaCalendario() {
-  const response = await fetch('/content/calendari/index.json');
+  const response = await fetch('/content/data/calendari.json');
   const partite = await response.json();
 
   const container = document.getElementById('calendarioContainer');
