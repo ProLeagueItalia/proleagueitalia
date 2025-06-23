@@ -353,3 +353,15 @@ nav a:hover {
 .classifica.serieb h2 {
   background: linear-gradient(90deg, #fce600, #2945a0);
 }
+.giornata-blocco {
+  background: #f5f5f5;
+  padding: 15px;
+  margin: 10px auto;
+  border-radius: 10px;
+  width: 90%;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+.giornata-blocco h3 {
+  margin-top: 0;
+  color: #003366;
+}
