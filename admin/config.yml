@@ -64,14 +64,15 @@ collections:
       - { label: "Allenatore", name: "allenatore", widget: "string" }
       - { label: "Logo", name: "logo", widget: "image", media_folder: "images/squadre/serieb", public_folder: "/images/squadre/serieb" }
   - name: "calendari"
-    label: "Calendari"
-    folder: "content"
-    create: true
-    slug: "calendari"
-    fields:
-      - { label: "Lega", name: "lega", widget: "select", options: ["Inglese", "Italiana", "Spagnola", "Tedesca", "Francese", "SerieB"] }
-      - { label: "Giornata", name: "giornata", widget: "number" }
-      - { label: "Squadra Casa", name: "casa", widget: "string" }
-      - { label: "Squadra Trasferta", name: "trasferta", widget: "string" }
-      - { label: "Risultato", name: "risultato", widget: "string", required: false }
-      - { label: "Data", name: "data", widget: "datetime", format: "YYYY-MM-DD", required: false }
+  label: "Calendari"
+  folder: "content/data"
+  create: true
+  slug: "calendari"
+  fields:
+    - { label: "Lega", name: "lega", widget: "select", options: ["Inglese", "Italiana", "Spagnola", "Tedesca", "Francese", "SerieB"] }
+    - { label: "Giornata", name: "giornata", widget: "number" }
+    - { label: "Squadra Casa", name: "casa", widget: "string" }
+    - { label: "Squadra Trasferta", name: "trasferta", widget: "string" }
+    - { label: "Risultato", name: "risultato", widget: "string", required: false }
+    - { label: "Data", name: "data", widget: "datetime", format: "YYYY-MM-DD", required: false }
+
