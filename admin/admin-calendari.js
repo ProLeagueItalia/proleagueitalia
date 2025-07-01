@@ -13,19 +13,36 @@ document.getElementById("generaCalendarioAdmin").addEventListener("click", funct
   const squadre = squadrePerLega[legaSelezionata];
   const calendario = [];
 
-  for (let giornata = 1; giornata <= 14; giornata++) {
-    const partite = [];
-    const mescolate = [...squadre].sort(() => Math.random() - 0.5);
-    for (let i = 0; i < mescolate.length; i += 2) {
-      const casa = mescolate[i];
-      const trasferta = mescolate[i + 1];
-      partite.push({ casa, trasferta });
+  // Giornate di andata
+  const accoppiamenti = [];
+  for (let i = 0; i < squadre.length; i++) {
+    for (let j = i + 1; j < squadre.length; j++) {
+      accoppiamenti.push({ casa: squadre[i], trasferta: squadre[j] });
     }
-    calendario.push({ giornata, partite });
+  }
+
+  const giornateAndata = accoppiamenti
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 28); // 7 giornate * 4 match = 28 partite
+
+  for (let i = 0; i < 7; i++) {
+    const partite = giornateAndata.slice(i * 4, i * 4 + 4);
+    calendario.push({ giornata: i + 1, partite });
+  }
+
+  // Giornate di ritorno (invertite)
+  const giornateRitorno = giornateAndata.map(p => ({ casa: p.trasferta, trasferta: p.casa }))
+    .sort(() => Math.random() - 0.5);
+
+  for (let i = 0; i < 7; i++) {
+    const partite = giornateRitorno.slice(i * 4, i * 4 + 4);
+    calendario.push({ giornata: i + 8, partite });
   }
 
   mostraAnteprima(calendario, legaSelezionata);
+  salvaCalendarioNelCMS(calendario, legaSelezionata);
 });
+
 
 function mostraAnteprima(calendario, lega) {
   const container = document.getElementById("anteprimaCalendario");
@@ -46,5 +63,44 @@ function mostraAnteprima(calendario, lega) {
     });
 
     container.appendChild(blocco);
+  });
+}
+
+
+function salvaCalendarioNelCMS(calendario, lega) {
+  const partite = [];
+
+  calendario.forEach(giornata => {
+    giornata.partite.forEach(partita => {
+      partite.push({
+        giornata: giornata.giornata,
+        casa: partita.casa,
+        trasferta: partita.trasferta,
+        risultato: "",
+        data: ""
+      });
+    });
+  });
+
+  const payload = {
+    data: {
+      titolo: `Calendario ${lega.charAt(0).toUpperCase() + lega.slice(1)}`,
+      lega: lega,
+      partite: partite
+    }
+  };
+
+  fetch("/admin/api/entries/calendari", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  }).then(res => {
+    if (res.ok) {
+      alert("✅ Calendario salvato nel CMS con successo!");
+    } else {
+      alert("❌ Errore nel salvataggio del calendario.");
+    }
   });
 }
