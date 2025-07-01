@@ -13,52 +13,51 @@ document.getElementById("generaCalendarioAdmin").addEventListener("click", funct
   const squadre = squadrePerLega[legaSelezionata];
   const calendario = [];
 
-  // Giornate di andata
-  const accoppiamenti = [];
-  for (let i = 0; i < squadre.length; i++) {
-    for (let j = i + 1; j < squadre.length; j++) {
-      accoppiamenti.push({ casa: squadre[i], trasferta: squadre[j] });
+  // Giornate di andata (1-7)
+  for (let giornata = 1; giornata <= 7; giornata++) {
+    const partite = [];
+    const mescolate = [...squadre].sort(() => Math.random() - 0.5);
+    for (let i = 0; i < mescolate.length; i += 2) {
+      partite.push({ giornata, lega: legaSelezionata, casa: mescolate[i], trasferta: mescolate[i + 1], risultato: "", data: "" });
     }
+    calendario.push(...partite);
   }
 
-  const giornateAndata = accoppiamenti
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 28); // 7 giornate * 4 match = 28 partite
-
-  for (let i = 0; i < 7; i++) {
-    const partite = giornateAndata.slice(i * 4, i * 4 + 4);
-    calendario.push({ giornata: i + 1, partite });
+  // Giornate di ritorno (8-14) invertendo casa/trasferta
+  for (let giornata = 8; giornata <= 14; giornata++) {
+    const partite = [];
+    const mescolate = [...squadre].sort(() => Math.random() - 0.5);
+    for (let i = 0; i < mescolate.length; i += 2) {
+      partite.push({ giornata, lega: legaSelezionata, casa: mescolate[i + 1], trasferta: mescolate[i], risultato: "", data: "" });
+    }
+    calendario.push(...partite);
   }
 
-  // Giornate di ritorno (invertite)
-  const giornateRitorno = giornateAndata.map(p => ({ casa: p.trasferta, trasferta: p.casa }))
-    .sort(() => Math.random() - 0.5);
-
-  for (let i = 0; i < 7; i++) {
-    const partite = giornateRitorno.slice(i * 4, i * 4 + 4);
-    calendario.push({ giornata: i + 8, partite });
-  }
-
-  mostraAnteprima(calendario, legaSelezionata);
-  salvaCalendarioNelCMS(calendario, legaSelezionata);
+  mostraAnteprima(calendario);
+  salvaCalendario(calendario);
 });
 
-
-function mostraAnteprima(calendario, lega) {
+function mostraAnteprima(partite) {
   const container = document.getElementById("anteprimaCalendario");
   container.innerHTML = "";
 
-  calendario.forEach(giornata => {
+  const giornate = {};
+
+  partite.forEach(p => {
+    if (!giornate[p.giornata]) giornate[p.giornata] = [];
+    giornate[p.giornata].push(p);
+  });
+
+  Object.keys(giornate).sort((a, b) => a - b).forEach(g => {
     const blocco = document.createElement("div");
     blocco.className = "giornata-blocco";
-
     const titolo = document.createElement("h3");
-    titolo.textContent = `Giornata ${giornata.giornata} - ${lega.charAt(0).toUpperCase() + lega.slice(1)}`;
+    titolo.textContent = `Giornata ${g}`;
     blocco.appendChild(titolo);
 
-    giornata.partite.forEach(match => {
+    giornate[g].forEach(p => {
       const par = document.createElement("p");
-      par.textContent = `${match.casa} vs ${match.trasferta}`;
+      par.textContent = `${p.casa} vs ${p.trasferta}`;
       blocco.appendChild(par);
     });
 
@@ -66,41 +65,15 @@ function mostraAnteprima(calendario, lega) {
   });
 }
 
+function salvaCalendario(partite) {
+  const fileContent = JSON.stringify(partite, null, 2);
+  const blob = new Blob([fileContent], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
 
-function salvaCalendarioNelCMS(calendario, lega) {
-  const partite = [];
+  a.href = url;
+  a.download = "calendari.json";
+  a.click();
 
-  calendario.forEach(giornata => {
-    giornata.partite.forEach(partita => {
-      partite.push({
-        giornata: giornata.giornata,
-        casa: partita.casa,
-        trasferta: partita.trasferta,
-        risultato: "",
-        data: ""
-      });
-    });
-  });
-
-  const payload = {
-    data: {
-      titolo: `Calendario ${lega.charAt(0).toUpperCase() + lega.slice(1)}`,
-      lega: lega,
-      partite: partite
-    }
-  };
-
-  fetch("/admin/api/entries/calendari", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(payload)
-  }).then(res => {
-    if (res.ok) {
-      alert("✅ Calendario salvato nel CMS con successo!");
-    } else {
-      alert("❌ Errore nel salvataggio del calendario.");
-    }
-  });
+  URL.revokeObjectURL(url);
 }
