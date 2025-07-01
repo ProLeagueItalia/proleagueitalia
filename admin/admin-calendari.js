@@ -13,24 +13,34 @@ document.getElementById("generaCalendarioAdmin").addEventListener("click", funct
   const squadre = squadrePerLega[legaSelezionata];
   const calendario = [];
 
-  // Giornate di andata (1-7)
+  // Andata: giornate 1-7
   for (let giornata = 1; giornata <= 7; giornata++) {
-    const partite = [];
     const mescolate = [...squadre].sort(() => Math.random() - 0.5);
     for (let i = 0; i < mescolate.length; i += 2) {
-      partite.push({ giornata, lega: legaSelezionata, casa: mescolate[i], trasferta: mescolate[i + 1], risultato: "", data: "" });
+      calendario.push({
+        giornata: giornata,
+        lega: legaSelezionata,
+        casa: mescolate[i],
+        trasferta: mescolate[i + 1],
+        risultato: "",
+        data: ""
+      });
     }
-    calendario.push(...partite);
   }
 
-  // Giornate di ritorno (8-14) invertendo casa/trasferta
+  // Ritorno: giornate 8-14 (inverti casa e trasferta)
   for (let giornata = 8; giornata <= 14; giornata++) {
-    const partite = [];
     const mescolate = [...squadre].sort(() => Math.random() - 0.5);
     for (let i = 0; i < mescolate.length; i += 2) {
-      partite.push({ giornata, lega: legaSelezionata, casa: mescolate[i + 1], trasferta: mescolate[i], risultato: "", data: "" });
+      calendario.push({
+        giornata: giornata,
+        lega: legaSelezionata,
+        casa: mescolate[i + 1],
+        trasferta: mescolate[i],
+        risultato: "",
+        data: ""
+      });
     }
-    calendario.push(...partite);
   }
 
   mostraAnteprima(calendario);
