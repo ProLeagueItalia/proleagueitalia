@@ -1,51 +1,49 @@
-const { Octokit } = require("@octokit/core");
+const { Octokit } = require("@octokit/rest");
 
-exports.handler = async function(event) {
+exports.handler = async (event) => {
+  const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+  const REPO_OWNER = "ProLeagueitalia";
+  const REPO_NAME = "proleagueitalia";
+  const BRANCH = "main";
+  const octokit = new Octokit({ auth: GITHUB_TOKEN });
+
   try {
-    const token = process.env.GITHUB_TOKEN;
-    const octokit = new Octokit({ auth: token });
+    const { fileName, content } = JSON.parse(event.body);
+    const path = `calendari/${fileName}`;
 
-    const repoOwner = "ProLeagueItalia";
-    const repoName = "proleagueitalia";
-    const branch = "main";
-
-    const data = JSON.parse(event.body);
-    const stagione = data.stagione || "1";
-    const contenutoCalendario = JSON.stringify(data.calendario, null, 2);
-
-    const fileName = `calendari/calendario_Stagione_${stagione}.json`;
-
-    // Prendi lo SHA attuale del file se esiste (serve per aggiornare)
+    // Recupera l'hash (SHA) del file se esiste
     let sha;
     try {
-      const { data: existing } = await octokit.request(
-        `GET /repos/${repoOwner}/${repoName}/contents/${fileName}`,
-        { ref: branch }
-      );
-      sha = existing.sha;
+      const { data } = await octokit.repos.getContent({
+        owner: REPO_OWNER,
+        repo: REPO_NAME,
+        path,
+      });
+      sha = data.sha;
     } catch (e) {
-      sha = undefined; // file non esiste, verrà creato
+      sha = undefined; // il file non esiste ancora
     }
 
-    await octokit.request("PUT /repos/{owner}/{repo}/contents/{path}", {
-      owner: repoOwner,
-      repo: repoName,
-      path: fileName,
-      message: `Salvataggio calendario stagione ${stagione}`,
-      content: Buffer.from(contenutoCalendario).toString("base64"),
-      branch: branch,
-      sha: sha,
+    await octokit.repos.createOrUpdateFileContents({
+      owner: REPO_OWNER,
+      repo: REPO_NAME,
+      path,
+      message: `Calendario aggiornato: ${fileName}`,
+      content: Buffer.from(content).toString("base64"),
+      sha,
+      branch: BRANCH,
     });
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: "Calendario salvato su GitHub con successo." }),
+      body: JSON.stringify({ message: "Salvato con successo" }),
     };
   } catch (error) {
-    console.error("Errore nel salvataggio calendario:", error);
+    console.error("Errore salvataggio calendario:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Errore durante il salvataggio del calendario." }),
+      body: JSON.stringify({ error: error.message }),
     };
   }
 };
+
