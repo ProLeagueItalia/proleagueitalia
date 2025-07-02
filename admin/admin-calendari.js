@@ -75,33 +75,28 @@ function mostraAnteprima(partite) {
   });
 }
 
-async function salvaCalendario(partite) {
+function salvaCalendario(partite) {
   const key = "numeroStagione";
-  let stagioneNumero = parseInt(localStorage.getItem(key) || "1");
-  localStorage.setItem(key, stagioneNumero + 1); // prepara già per la prossima
+  let stagioneNumero = parseInt(localStorage.getItem(key) || "0", 10) + 1;
+  localStorage.setItem(key, stagioneNumero);
 
-  try {
-    const response = await fetch("/.netlify/functions/saveCalendario", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        stagione: stagioneNumero,
-        calendario: partite
-      })
+  const fileName = `calendario_Stagione_${stagioneNumero}.json`;
+  const fileContent = JSON.stringify(partite, null, 2);
+
+  fetch('/.netlify/functions/saveCalendario', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fileName, content: fileContent })
+  })
+    .then(response => {
+      if (!response.ok) throw new Error("Errore nel salvataggio su GitHub");
+      return response.json();
+    })
+    .then(data => {
+      alert(`✅ Calendario salvato come ${fileName}`);
+    })
+    .catch(error => {
+      console.error("Errore:", error);
+      alert("❌ Errore durante il salvataggio del calendario.");
     });
-
-    const result = await response.json();
-
-    if (response.ok) {
-      alert(`✅ Calendario salvato con successo per la Stagione ${stagioneNumero}`);
-    } else {
-      throw new Error(result.error || "Errore sconosciuto");
-    }
-
-  } catch (error) {
-    console.error("Errore nel salvataggio:", error);
-    alert("❌ Errore durante il salvataggio del calendario.");
-  }
 }
