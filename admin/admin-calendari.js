@@ -76,13 +76,18 @@ function mostraAnteprima(partite) {
 }
 
 function salvaCalendario(partite) {
+  const key = "numeroStagione";
+  let stagioneNumero = parseInt(localStorage.getItem(key) || "0", 10) + 1;
+  localStorage.setItem(key, stagioneNumero);
+
+  const fileName = `calendario_Stagione_${stagioneNumero}.json`;
   const fileContent = JSON.stringify(partite, null, 2);
   const blob = new Blob([fileContent], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
 
   a.href = url;
-  a.download = "calendari.json";
+  a.download = fileName;
   a.click();
 
   URL.revokeObjectURL(url);
