@@ -75,20 +75,33 @@ function mostraAnteprima(partite) {
   });
 }
 
-function salvaCalendario(partite) {
+async function salvaCalendario(partite) {
   const key = "numeroStagione";
-  let stagioneNumero = parseInt(localStorage.getItem(key) || "0", 10) + 1;
-  localStorage.setItem(key, stagioneNumero);
+  let stagioneNumero = parseInt(localStorage.getItem(key) || "1");
+  localStorage.setItem(key, stagioneNumero + 1); // prepara già per la prossima
 
-  const fileName = `calendario_Stagione_${stagioneNumero}.json`;
-  const fileContent = JSON.stringify(partite, null, 2);
-  const blob = new Blob([fileContent], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
+  try {
+    const response = await fetch("/.netlify/functions/saveCalendario", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        stagione: stagioneNumero,
+        calendario: partite
+      })
+    });
 
-  a.href = url;
-  a.download = fileName;
-  a.click();
+    const result = await response.json();
 
-  URL.revokeObjectURL(url);
+    if (response.ok) {
+      alert(`✅ Calendario salvato con successo per la Stagione ${stagioneNumero}`);
+    } else {
+      throw new Error(result.error || "Errore sconosciuto");
+    }
+
+  } catch (error) {
+    console.error("Errore nel salvataggio:", error);
+    alert("❌ Errore durante il salvataggio del calendario.");
+  }
 }
