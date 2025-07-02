@@ -12,6 +12,16 @@
     </a>
     <h1>Admin - Genera Calendario</h1>
   </header>
+  
+  <div style="margin: 20px 0;">
+  <label for="stagioneSelect">Seleziona stagione:</label>
+  <select id="stagioneSelect" onchange="cambiaStagione()">
+    <option value="calendario_Stagione_3.json">Stagione 3</option>
+    <option value="calendario_Stagione_2.json">Stagione 2</option>
+    <option value="calendario_Stagione_1.json">Stagione 1</option>
+  </select>
+</div>
+
 
   <main style="text-align: center; margin: 30px;">
     <label for="legaAdmin">Seleziona una lega:</label>
@@ -39,6 +49,22 @@
     <p>&copy; 2025 Pro League Italia - Admin Panel</p>
   </footer>
 
-  <script src="/admin/admin-calendari.js"></script>
+<script src="/admin/admin-calendari.js"></script>
+
+<script>
+function cambiaStagione() {
+  const file = document.getElementById("stagioneSelect").value;
+  if (!file) return;
+
+  fetch(`/dati/${file}`)
+    .then(res => res.json())
+    .then(dati => {
+      mostraAnteprima(dati);
+    })
+    .catch(err => {
+      console.error("Errore nel caricamento del calendario:", err);
+    });
+}
+</script>
 </body>
 </html>
