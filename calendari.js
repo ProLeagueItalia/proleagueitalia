@@ -1,53 +1,90 @@
-async function caricaCalendario() {
-  const response = await fetch("/content/data/calendari.json");
-  const partite = await response.json();
+const legheDisponibili = {
+  inglese: "Lega Inglese",
+  italiana: "Lega Italiana",
+  spagnola: "Lega Spagnola",
+  tedesca: "Lega Tedesca",
+  francese: "Lega Francese",
+  serieb: "Serie B"
+};
 
-  const container = document.getElementById("contenitoreCalendari");
-  container.innerHTML = '';
+// Popola i menu a tendina
+window.onload = () => {
+  const selectLega = document.getElementById("legaSelect");
+  const selectStagione = document.getElementById("stagioneSelect");
 
-  const partitePerLega = {};
+  // Aggiungi leghe
+  for (const [value, label] of Object.entries(legheDisponibili)) {
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = label;
+    selectLega.appendChild(option);
+  }
 
-  // Raggruppa per lega e giornata
-  partite.forEach(partita => {
-    const lega = partita.lega.toLowerCase();
-    const giornata = partita.giornata;
+  // Aggiungi stagioni (1-5, puoi aumentare se vuoi)
+  for (let i = 1; i <= 5; i++) {
+    const option = document.createElement("option");
+    option.value = i;
+    option.textContent = `Stagione ${i}`;
+    selectStagione.appendChild(option);
+  }
 
-    if (!partitePerLega[lega]) partitePerLega[lega] = {};
-    if (!partitePerLega[lega][giornata]) partitePerLega[lega][giornata] = [];
+  // Carica quando cambia qualcosa
+  selectLega.addEventListener("change", caricaCalendario);
+  selectStagione.addEventListener("change", caricaCalendario);
+};
 
-    partitePerLega[lega][giornata].push(partita);
+function caricaCalendario() {
+  const lega = document.getElementById("legaSelect").value;
+  const stagione = document.getElementById("stagioneSelect").value;
+
+  if (!lega || !stagione) return;
+
+  const file = `/calendari/lega-${lega}-stagione-${stagione}.json`;
+
+  fetch(file)
+    .then((response) => {
+      if (!response.ok) throw new Error("File non trovato");
+      return response.json();
+    })
+    .then((data) => {
+      mostraCalendario(data);
+    })
+    .catch((error) => {
+      console.error("Errore nel caricamento calendario:", error);
+      document.getElementById("calendarioOutput").innerHTML =
+        "<p>⚠️ Calendario non disponibile</p>";
+    });
+}
+
+function mostraCalendario(partite) {
+  const container = document.getElementById("calendarioOutput");
+  container.innerHTML = "";
+
+  const giornate = {};
+
+  partite.forEach((p) => {
+    if (!giornate[p.giornata]) giornate[p.giornata] = [];
+    giornate[p.giornata].push(p);
   });
 
-  const selezione = document.getElementById("selezionaLega").value;
-  for (const lega in partitePerLega) {
-    if (selezione !== "tutte" && selezione !== lega) continue;
-
-    const titolo = document.createElement("h2");
-    titolo.textContent = `Calendario - Lega ${lega.charAt(0).toUpperCase() + lega.slice(1)}`;
-    container.appendChild(titolo);
-
-    for (let giornata = 1; giornata <= 14; giornata++) {
+  Object.keys(giornate)
+    .sort((a, b) => a - b)
+    .forEach((g) => {
       const blocco = document.createElement("div");
       blocco.className = "giornata-blocco";
 
-      const intestazione = document.createElement("h3");
-      intestazione.textContent = `Giornata ${giornata}`;
-      blocco.appendChild(intestazione);
+      const titolo = document.createElement("h3");
+      titolo.textContent = `Giornata ${g}`;
+      blocco.appendChild(titolo);
 
-      const partite = partitePerLega[lega][giornata] || [];
-      partite.forEach(p => {
-        const pTag = document.createElement("p");
-        pTag.innerHTML = `<strong>${p.casa}</strong> vs <strong>${p.trasferta}</strong> – ${p.risultato || "—"} <br> <em>${p.data || ""}</em>`;
-        blocco.appendChild(pTag);
+      giornate[g].forEach((p) => {
+        const par = document.createElement("p");
+        par.textContent = `${p.casa} vs ${p.trasferta}${
+          p.risultato ? " – Risultato: " + p.risultato : ""
+        }`;
+        blocco.appendChild(par);
       });
 
       container.appendChild(blocco);
-    }
-  }
+    });
 }
-
-function filtraCalendario() {
-  caricaCalendario();
-}
-
-document.addEventListener("DOMContentLoaded", caricaCalendario);
