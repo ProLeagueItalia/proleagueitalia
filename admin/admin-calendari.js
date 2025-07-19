@@ -80,7 +80,7 @@ function salvaCalendario(partite) {
   let stagioneNumero = parseInt(localStorage.getItem(key) || "0", 10) + 1;
   localStorage.setItem(key, stagioneNumero);
 
-  const fileName = `calendario_Stagione_${stagioneNumero}.json`;
+  const fileName = `lega-${legaSelezionata.toLowerCase().replace(/\s+/g, "-")}-stagione-${stagioneNumero}.json`;
   const fileContent = JSON.stringify(partite, null, 2);
 
   fetch('/.netlify/functions/saveCalendario', {
