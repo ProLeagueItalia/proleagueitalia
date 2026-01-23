@@ -1,3 +1,11 @@
+:root {
+  --brand-primary: #2cf9ff;
+  --brand-secondary: #ff3cac;
+  --brand-dark: #000000;
+  --brand-dark-soft: #121212;
+  --brand-light: #ffffff;
+}
+
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
@@ -12,9 +20,11 @@ header {
 }
 
 nav {
-  background: linear-gradient(90deg, #111, #1a1a1a);
-  border-top: 1px solid #222;
-  border-bottom: 1px solid #222;
+  background: linear-gradient(
+    90deg,
+    var(--brand-dark),
+    var(--brand-dark-soft)
+  );
 }
 
 nav ul {
