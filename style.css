@@ -69,3 +69,8 @@ main {
   opacity: 0.8;
   font-size: 0.9rem;
 }
+@media (max-width: 600px) {
+  .logo-video {
+    width: 130px;
+  }
+}
