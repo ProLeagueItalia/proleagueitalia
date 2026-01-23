@@ -108,3 +108,7 @@ nav li::after {
 nav li:hover::after {
   width: 100%;
 }
+.site-header h1,
+.site-header p {
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
