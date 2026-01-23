@@ -131,3 +131,6 @@ nav li:hover::after {
 .accent {
   color: var(--brand-primary);
 }
+.site-header {
+  outline: 5px solid lime !important;
+}
