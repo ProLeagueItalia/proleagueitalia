@@ -129,3 +129,14 @@ nav li:hover::after {
 .accent {
   color: var(--brand-primary);
 }
+.ranking-container {
+  padding: 40px 20px;
+}
+
+.ranking-container iframe {
+  width: 100%;
+  min-height: 85vh;
+  border: none;
+  border-radius: 12px;
+  background: #000;
+}
